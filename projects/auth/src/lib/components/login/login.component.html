@@ -1,0 +1,70 @@
+<section class="w-full h-dvh vk-bg-body flex items-center justify-center">
+  <div
+    class="vk-bg-white w-5/12 max-md:w-11/12 max-lg:w-7/12 rounded-md border p-5"
+  >
+    <h1 class="vk-h3 text-center">Login</h1>
+    <form class="" [formGroup]="loginForm" (submit)="onSubmit()">
+      <div class="grid">
+        <label for="email" class="vk-form-label"
+          >Email <span class="vk-alert-red">*</span></label
+        >
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter email"
+          class="{{
+            email.invalid && email.touched
+              ? 'vk-form-input-invalid'
+              : email.valid
+              ? 'vk-form-input-valid'
+              : 'vk-form-input '
+          }}"
+          formControlName="email"
+        />
+        @if(email.errors && (email.touched || email.dirty)){
+        <span class="vk-alert-red">Enter valid email</span>
+        }
+      </div>
+      <div class="grid">
+        <label for="password" class="vk-form-label"
+          >Password <span class="vk-alert-red">*</span></label
+        >
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Enter password"
+          class="{{
+            password.invalid && password.touched
+              ? 'vk-form-input-invalid'
+              : password.valid
+              ? 'vk-form-input-valid'
+              : 'vk-form-input '
+          }}"
+          formControlName="password"
+        />
+        @if(password.errors && (password.touched || password.dirty)){
+        <span class="vk-alert-red">Password is required</span>
+        }
+      </div>
+
+      <div class="pt-3 flex justify-end">
+        <button
+          type="submit"
+          class="vk-btn-blue w-full"
+          [disabled]="loginForm.invalid"
+        >
+          Login
+        </button>
+      </div>
+    </form>
+
+    <div class="text-center pt-2">
+      Do you want to create Account ?
+      <a class="vk-text-blue"> Register</a> &nbsp;<br />
+      Activate Account ? <a class="vk-text-blue">Activate</a> &nbsp; <br />
+      Forgot Password ? <a class="vk-text-blue">Forgot Password</a> &nbsp;
+    </div>
+  </div>
+</section>

@@ -1,0 +1,126 @@
+<section class="w-full h-dvh vk-bg-body flex items-center justify-center">
+  <div
+    class="vk-bg-white w-5/12 max-md:w-11/12 max-lg:w-7/12 rounded-md border p-5"
+  >
+    <h1 class="vk-h3 text-center">Register</h1>
+    <form class="" [formGroup]="registerForm" (submit)="onSubmit()">
+      <div class="grid">
+        <label for="name" class="vk-form-label"
+          >Name <span class="vk-alert-red">*</span></label
+        >
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Enter name"
+          formControlName="name"
+          class="{{
+            name.invalid && name.touched
+              ? 'vk-form-input-invalid'
+              : name.valid
+              ? 'vk-form-input-valid'
+              : 'vk-form-input '
+          }}"
+        />
+      </div>
+      @if(name.invalid && (name.touched || name.dirty) ){
+      <span class="vk-alert-red" *ngIf="name.errors && name.errors['required']"
+        >Name is required</span
+      >
+      <span class="vk-alert-red" *ngIf="name.errors && name.errors['minlength']"
+        >Name must contains
+        {{ name.errors["minlength"].requiredLength }} letters</span
+      >
+      }
+      <div class="grid">
+        <label for="email" class="vk-form-label"
+          >Email <span class="vk-alert-red">*</span></label
+        >
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter email"
+          formControlName="email"
+          class="{{
+            email.invalid && email.touched
+              ? 'vk-form-input-invalid'
+              : email.valid
+              ? 'vk-form-input-valid'
+              : 'vk-form-input '
+          }}"
+        />
+        @if(email.invalid && (email.touched || email.dirty) ){
+        <span
+          class="vk-alert-red"
+          *ngIf="email.errors && email.errors['required']"
+          >Email is required</span
+        >
+        <span class="vk-alert-red" *ngIf="email.errors && email.errors['email']"
+          >Enter valid email</span
+        >
+        }
+      </div>
+      <div class="grid">
+        <label for="password" class="vk-form-label"
+          >Password <span class="vk-alert-red">*</span></label
+        >
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Enter password"
+          formControlName="password"
+          class="{{
+            password.invalid && password.touched
+              ? 'vk-form-input-invalid'
+              : password.valid
+              ? 'vk-form-input-valid'
+              : 'vk-form-input '
+          }}"
+        />
+        @if(password.invalid && (password.touched || password.dirty)){
+        <span
+          class="vk-alert-red"
+          *ngIf="password.errors && password.errors['required']"
+          >Password is required</span
+        >
+        <span
+          class="vk-alert-red"
+          *ngIf="password.errors && password.errors['minlength']"
+          >Password must contains
+          {{ password.errors["minlength"].requiredLength }} letters</span
+        >
+        <span
+          class="vk-alert-red"
+          *ngIf="password.errors && password.errors['maxlength']"
+          >Password not grater than
+          {{ password.errors["maxlength"].requiredLength }} letters</span
+        >
+
+        <span
+          class="vk-alert-red"
+          *ngIf="password.errors && password.errors['pattern']"
+          >Password must contains one uppercase , one lowercase , one number and
+          one special character</span
+        >
+        }
+      </div>
+
+      <div class="pt-3 flex justify-end">
+        <button
+          type="submit"
+          [disabled]="registerForm.invalid"
+          class="vk-btn-blue w-full"
+        >
+          Register
+        </button>
+      </div>
+    </form>
+
+    <div class="text-center pt-2">
+      Already have an Account ?
+      <a class="vk-text-blue"> Login</a>
+    </div>
+  </div>
+</section>
