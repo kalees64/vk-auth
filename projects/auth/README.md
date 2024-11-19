@@ -1,24 +1,33 @@
 # Auth
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.0.
+## Installation
 
-## Code scaffolding
+```bash
+ng add @kalees64/vk-auth
+```
 
-Run `ng generate component component-name --project auth` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project auth`.
-> Note: Don't forget to add `--project auth` or else it will be added to the default project in your `angular.json` file. 
+## Usage
 
-## Build
+app.component.ts
 
-Run `ng build auth` to build the project. The build artifacts will be stored in the `dist/` directory.
+```javascript
+import { Component } from "@angular/core";
+import { LoginComponent } from "@kalees64/vk-auth";
 
-## Publishing
+@Component({
+  selector: "app-root",
+  standalone: true,
+  imports: [LoginComponent],
+  templateUrl: "./app.component.html",
+  styleUrl: "./app.component.css",
+})
+export class AppComponent {
+  title = "angular-test1";
+}
+```
 
-After building your library with `ng build auth`, go to the dist folder `cd dist/auth` and run `npm publish`.
+app.component.html
 
-## Running unit tests
-
-Run `ng test auth` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```javascript
+<vk-login></vk-login>
+```
