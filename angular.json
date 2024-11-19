@@ -112,7 +112,7 @@
       "projectType": "library",
       "root": "projects/auth",
       "sourceRoot": "projects/auth/src",
-      "prefix": "lib",
+      "prefix": "vk",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",

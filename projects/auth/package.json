@@ -5,6 +5,22 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "build": "tsc -p tsconfig.schematics.json",
+    "postbuild": "copyfiles schematics/collection.json ../../dist/auth/"
+  },
+  "ng-add": {
+    "save": "true"
+  },
+  "schematics": "./schematics/collection.json",
+  "keywords": [
+    "angular",
+    "angular-component",
+    "typescript",
+    "@kalees64",
+    "kalees64",
+    "vk-auth"
+  ],
   "peerDependencies": {
     "@angular/common": "^18.2.0",
     "@angular/core": "^18.2.0",
