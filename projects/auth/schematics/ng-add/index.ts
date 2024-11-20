@@ -3,15 +3,6 @@ import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
 export function ngAdd(_options: any): Rule {
   return (tree: Tree, context: SchematicContext) => {
-    // Add ngx-toastr and @angular/animations dependencies
-    // context.logger.info('Adding ngx-toastr and @angular/animations...');
-    // const packageJson = JSON.parse(
-    //   tree.read('package.json')!.toString('utf-8')
-    // );
-    // packageJson.dependencies['ngx-toastr'] = '^17.0.0';
-    // packageJson.dependencies['@angular/animations'] = '^16.0.0';
-    // tree.overwrite('package.json', JSON.stringify(packageJson, null, 2));
-
     // Add toastr styles to angular.json
     context.logger.info('Configuring styles...');
     const angularJson = JSON.parse(
@@ -46,11 +37,44 @@ export function ngAdd(_options: any): Rule {
       );
     }
 
+    // Set up Tailwind configuration
+    context.logger.info('Adding Tailwind CSS configuration...');
+    const tailwindConfigPath = '/tailwind.config.js';
+    const tailwindConfigContent = `
+module.exports = {
+  content: [
+    "./src/**/*.{html,ts}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+`;
+    if (!tree.exists(tailwindConfigPath)) {
+      tree.create(tailwindConfigPath, tailwindConfigContent);
+    }
+
+    // Update styles.css with Tailwind directives
+    const stylesPath = '/src/styles.css';
+    const stylesContent = `
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+`;
+    if (tree.exists(stylesPath)) {
+      const existingStyles = tree.read(stylesPath)!.toString('utf-8');
+      tree.overwrite(stylesPath, existingStyles + '\n' + stylesContent);
+    } else {
+      tree.create(stylesPath, stylesContent);
+    }
+
     // Schedule npm install task
     // Add npm packages installation task
     context.addTask(
       new NodePackageInstallTask({
-        packageName: 'ngx-toastr @angular/animations',
+        packageName:
+          'ngx-toastr @angular/animations tailwindcss postcss autoprefixer',
       })
     );
 

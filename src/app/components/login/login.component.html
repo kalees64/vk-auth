@@ -1,0 +1,37 @@
+<h1 class="vk-h1 pt-10 text-center">LOGIN</h1>
+
+<h1 class="vk-h4">HasRoleDirective</h1>
+<div class="p-3 flex gap-2 items-center">
+  <button class="vk-btn-red" *hasRole="['ADMIN']">
+    I am Access only to admin
+  </button>
+  <button class="vk-btn-blue" *hasRole="['ADMIN', 'USER']">
+    I am Access only to user & admin
+  </button>
+</div>
+<h1 class="vk-h4">DisableIfNoRole</h1>
+<div class="p-3 flex gap-2 items-center">
+  <button class="vk-btn-red" [disableIfNoRole]="['ADMIN']">
+    I am Access only to admin
+  </button>
+  <button class="vk-btn-blue" [disableIfNoRole]="['ADMIN', 'USER']">
+    I am Access only to user & admin
+  </button>
+</div>
+<h1 class="vk-h4">DisableLinkIfNoRole</h1>
+<div class="p-3 flex gap-2 items-center">
+  <a routerLink="/admin" [disableLinkIfNoRole]="['ADMIN']">
+    I am Access only to admin Link
+  </a>
+  <a routerLink="/dashboard" [disableLinkIfNoRole]="['ADMIN', 'USER']">
+    I am Access only to user & admin Link
+  </a>
+</div>
+<div class="p-3 flex gap-2 items-center">
+  <button class="vk-btn-teal" (click)="saveDataToLocalStorage()">
+    Save data to localstorage
+  </button>
+  <button class="vk-btn-pink" (click)="clearUserDataFromLocalStorage()">
+    Remove data to localstorage
+  </button>
+</div>
