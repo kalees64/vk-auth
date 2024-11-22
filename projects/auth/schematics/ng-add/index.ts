@@ -74,7 +74,7 @@ module.exports = {
     context.addTask(
       new NodePackageInstallTask({
         packageName:
-          'ngx-toastr @angular/animations tailwindcss postcss autoprefixer',
+          'ngx-toastr @angular/animations tailwindcss postcss autoprefixer gapi-script @types/gapi @types/gapi.auth2',
       })
     );
 

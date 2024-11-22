@@ -3,6 +3,7 @@ import { HasRoleDirective } from '../../../../projects/auth/src/public-api';
 import { DisableIfNoRoleDirective } from '../../../../projects/auth/src/lib/disableIfNoRole.directive';
 import { DisableLinkIfNoRoleDirective } from '../../../../projects/auth/src/lib/disableLinkIfNoRole.directive';
 import { RouterLink } from '@angular/router';
+import { GoogleSigninComponent } from '../../../../projects/auth/src/lib/components/google-signin/google-signin.component';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { RouterLink } from '@angular/router';
     HasRoleDirective,
     DisableLinkIfNoRoleDirective,
     RouterLink,
+    GoogleSigninComponent,
   ],
   templateUrl: './login.component.html',
   styles: ``,
@@ -22,7 +24,7 @@ export class LoginComponent {
       id: 1,
       name: 'Kalees',
       email: 'kalees@gmail.com',
-      roles: ['USER'],
+      roles: ['ADMIN', 'USER'],
     };
 
     localStorage.setItem('user', JSON.stringify(user));
